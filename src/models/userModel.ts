@@ -1,6 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/utils/prisma';
 
-const prisma = new PrismaClient();
 
 export const UserModel = {
     findAll: async () => {
@@ -18,7 +17,6 @@ export const UserModel = {
                 },
             });
         } catch (error) {
-            // Itt az error változó típusának biztosítása
             if (error instanceof Error) {
                 throw new Error(`User with email ${email} not found or could not be deleted. Error: ${error.message}`);
             }
@@ -37,7 +35,6 @@ export const UserModel = {
                 },
             });
         } catch (error) {
-            // Itt is az error változó típusának biztosítása
             if (error instanceof Error) {
                 throw new Error(`User with email ${email} not found or could not be updated. Error: ${error.message}`);
             }
