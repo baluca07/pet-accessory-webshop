@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import {prisma} from "@/utils/prisma";
+import {PrismaClient} from "@prisma/client";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const prisma = new PrismaClient()
     if (req.method === 'GET') {
         try {
             const departments = await prisma.department.findMany();

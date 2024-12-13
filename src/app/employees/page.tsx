@@ -1,7 +1,9 @@
+import EmployeeList from "@/frontendComponents/employeeList";
+
 export default function EmployeesPage(){
     return(
         <>
-            <p>Nothing interesting here...</p>
+            <EmployeeList></EmployeeList>
         </>
     )
 }
