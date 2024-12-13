@@ -1,10 +1,10 @@
-import EmployeeList from "@/frontendComponents/employeeList";
-import Link from "next/link";
 import { redirect } from 'next/navigation'
 
 import { createClient } from '@/utils/supabase/server'
+import Link from "next/link";
 
-export default async function EmployeesPage() {
+
+export default async function AdminPage() {
     const supabase = await createClient()
 
     const {data, error} = await supabase.auth.getUser()
@@ -13,8 +13,10 @@ export default async function EmployeesPage() {
     }
     return (
         <>
-            <Link href={"./admin"}>Manage employees...</Link>
-            <EmployeeList></EmployeeList>
+            <h1>Account infos</h1>
+            <p>Email: {data.user.email}</p>
+            <p>Role: {data.user.role}</p>
+            <Link href={"/"}>Go to home page...</Link>
         </>
     )
 }
