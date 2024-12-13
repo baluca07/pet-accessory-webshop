@@ -17,6 +17,13 @@ export default async function AdminPage() {
             <p>Email: {data.user.email}</p>
             <p>Role: {data.user.role}</p>
             <Link href={"/"}>Go to home page...</Link>
+            <div>
+                <form action="/auth/signout" method="post">
+                    <button className="button block" type="submit">
+                        Sign out
+                    </button>
+                </form>
+            </div>
         </>
     )
 }
