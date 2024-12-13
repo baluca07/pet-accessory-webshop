@@ -14,9 +14,19 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+model Employee {
+  id         Int        @id @default(autoincrement())
+  name       String
+  email      String     @unique
+  phone      String     @unique
+  dep_id     Int
+  department Department @relation(fields: [dep_id], references: [id])
 }
 
+model Department {
+  id       Int        @id @default(autoincrement())
+  name     String
+  location String
+  phone    String     @unique
+  Employee Employee[]
+}
