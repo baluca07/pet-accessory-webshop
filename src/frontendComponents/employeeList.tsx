@@ -4,8 +4,16 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import {fetchEmployees} from "@/services/employeeService";
 
+type EmployeeWithDepartment = {
+    id: number;
+    name: string;
+    email: string;
+    phone: string;
+    departmentName: string;
+};
+
 export default function EmployeeList() {
-    const [employees, setEmployees] = useState<any[]>([]);
+    const [employees, setEmployees] = useState<EmployeeWithDepartment[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -14,7 +22,7 @@ export default function EmployeeList() {
                 const employeesData = await fetchEmployees();
                 setEmployees(employeesData); // Update the state with fetched data
             } catch (error) {
-                console.error("Error fetching departments:", error);
+                console.error("Error fetching employees:", error);
             } finally {
                 setLoading(false); // Set loading to false once data is fetched
             }
@@ -23,7 +31,7 @@ export default function EmployeeList() {
         fetchData();
     }, []);
 
-    if (loading) return <div>Loading...</div>; // Show loading message while fetching data
+    if (loading) return <div>Loading...</div>;
 
     return (
         <div>
@@ -46,7 +54,7 @@ export default function EmployeeList() {
                             <td>{emp.name}</td>
                             <td>{emp.email}</td>
                             <td>{emp.phone}</td>
-                            <td>{emp.department.name}</td>
+                            <td>{emp.departmentName}</td>
                         </tr>
                     ))}
                     </tbody>
