@@ -3,8 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {fetchDepartments} from "@/services/departmentService";
-import {Department} from "@prisma/client";
 
+type Department = {
+    id: number;
+    name: string;
+    location: string;
+    phone: string;
+};
 
 export default function DepartmentsPage() {
     // Define state to hold the departments
